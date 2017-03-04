@@ -129,6 +129,7 @@
 % Define custom commands for CV info
 \newcommand{\cvdate}[1]{\renewcommand{\cvdate}{#1}}
 \newcommand{\cvlinkedin}[1]{\renewcommand{\cvlinkedin}{#1}}
+\newcommand{\cvgithub}[1]{\renewcommand{\cvgithub}{#1}}
 \newcommand{\cvmail}[1]{\renewcommand{\cvmail}{#1}}
 \newcommand{\cvnumberphone}[1]{\renewcommand{\cvnumberphone}{#1}}
 \newcommand{\cvaddress}[1]{\renewcommand{\cvaddress}{#1}}
@@ -182,13 +183,20 @@
     \renewcommand{\arraystretch}{1.6}
     \begin{tabular}{p{1cm} @{\hskip 0.5cm}p{5cm}}
         
-          \ifthenelse{\equal{\cvlinkedin}{}}{}{
-            {$
-              \begin{array}{l}
-              {\href{\cvlinkedin}{\includegraphics[scale=0.04]{img/LinkedIn_Logo.png}}}
-              \end{array}
-              $} & \href{\cvlinkedin}{\hspace{16mm}/in/hsgadgil} \\
-            }
+    %   \ifthenelse{\equal{\cvlinkedin}{}}{}{
+    %     {$
+    %       \begin{array}{l}
+    %       {\href{\cvlinkedin}{\includegraphics[scale=0.04]{img/LinkedIn_Logo.png}}}
+    %       \end{array}
+    %       $} & \href{\cvlinkedin}{\hspace{16mm}/in/miaodx} \\
+    %     }
+      \ifthenelse{\equal{\cvgithub}{}}{}{
+        {$
+          \begin{array}{l}
+          {\href{\cvgithub}{\includegraphics[scale=0.005]{img/github.jpg}}}
+          \end{array}
+          $} & \href{\cvgithub}{github.com/MiaoDX} \\
+        }
       \ifthenelse{\equal{\cvnumberphone}{}}{}{
             {$
               \begin{array}{l}
@@ -201,8 +209,9 @@
               \begin{array}{l}
               {\href{\cvsite}{\includegraphics[scale=0.05]{img/globe-512.png}}}
               \end{array}
-              $} 
-            & \cvsite\\}
+              $} & \href{\cvsite}{cnblogs.com/miaodx} \\
+            %& \cvsite\\
+        }
       \ifthenelse{\equal{\cvmail}{}}{}{
             {$
               \begin{array}{l}
@@ -213,22 +222,22 @@
     \end{tabular}
 
     %------------------------------------------------
-        \vspace{3mm}
+        \vspace{2mm}
         \profilesection{Skills}{4cm}
 
     	\skills
         
         %------------------------------------------------
-        \vspace{3mm}
+        \vspace{2mm}
         \profilesection{Interests}{3cm} 
         
         \interests
         
-        \vspace{3mm}
+        \vspace{2mm}
         \profilesection{Languages}{2.4cm} 
         {$
               \begin{array}{l}
-              \hspace{-2mm}{\includegraphics[scale=0.45]{img/languages_muted.png}}
+              \hspace{-2mm}{\includegraphics[scale=0.14]{img/languages_miao.png}}
               \end{array}
         $}   
   \end{textblock}
@@ -282,25 +291,13 @@
 	\end{tabular*}
 }
 
-% \newcommand{\twentyitem}[5]{%
-% 	#1&\parbox[t]{0.83\textwidth}{%
-% 		\textbf{#2}% 
-% 		\hfill%
-% 		{\footnotesize#3}\\%
-%         \ifblank{#4}{}{#4 \\}
-% 		#5\vspace{\parsep}%
-% 	}\\
-% }
-
-\newcommand{\twentyitem}[6]{%
+\newcommand{\twentyitem}[5]{%
 	#1&\parbox[t]{0.83\textwidth}{%
-		\textbf{#3}% 
+		\textbf{#2}% 
 		\hfill%
-		{\footnotesize#4}%
-        }\\%
-    #2&\parbox[t]{0.83\textwidth}{%
-		\ifblank{#5}{}{#5 \\}
-		#6\vspace{\parsep}%
+		{\footnotesize#3}\\%
+        \ifblank{#4}{}{#4 \\}
+		#5\vspace{\parsep}%
 	}\\
 }
 
@@ -327,7 +324,7 @@
 %	 MARGINS AND LINKS
 %----------------------------------------------------------------------------------------
 
-\RequirePackage[left=7.6cm,top=0.05cm,right=1cm,bottom=0.05cm,nohead,nofoot]{geometry}
+\RequirePackage[left=7.6cm,top=0.1cm,right=1cm,bottom=0.2cm,nohead,nofoot]{geometry}
 
 
 \usepackage{smartdiagram}
