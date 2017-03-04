@@ -1,3 +1,14 @@
+# English CV of MiaoDX
+
+Some changes from [Data-Engineer-Resume-LaTeX](https://github.com/opensorceror/Data-Engineer-Resume-LaTeX), to be honest, this template is not so ideal, for example, the second page(maybe my CV is a little long) do not have left column content, the spaces is not so appealing and does not support Chinese characters.
+
+However, it looks pretty(for pdf format, please see [miaodx/miaodx.pdf](miaodx/miaodx.pdf)):
+
+![miaodx](miaodx/miaodx.png)
+
+**Below is the original README:**
+
+
 # LaTeX resume template
 
 This is the template I use for my own resume. I've compiled it with elements from several templates, including:
