@@ -237,7 +237,7 @@
         \profilesection{Languages}{2.4cm} 
         {$
               \begin{array}{l}
-              \hspace{-2mm}{\includegraphics[scale=0.14]{img/languages_miao.png}}
+              \hspace{-2mm}{\includegraphics[scale=0.12]{img/languages_miao.png}}
               \end{array}
         $}   
   \end{textblock}
