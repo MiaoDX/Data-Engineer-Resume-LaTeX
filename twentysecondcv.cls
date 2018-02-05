@@ -209,7 +209,7 @@
               \begin{array}{l}
               {\href{\cvsite}{\includegraphics[scale=0.05]{img/globe-512.png}}}
               \end{array}
-              $} & \href{\cvsite}{cnblogs.com/miaodx} \\
+              $} & \href{\cvsite}{miaodx.github.io} \\
             %& \cvsite\\
         }
       \ifthenelse{\equal{\cvmail}{}}{}{
