@@ -1,12 +1,25 @@
 \ProvidesClass{twentysecondcv}[2015/02/28 CV class]
-\LoadClass{article}
+
+
+\LoadClass[utf8]{ctexart}
+\renewcommand{\baselinestretch}{0.9}
+
+%\LoadClass{article}
+%\usepackage{xeCJK}% 调用 xeCJK 宏包
+%\setCJKmainfont{SimSun}% 设置 CJK 主字体为 SimSun （宋体）
+
+%\usepackage{titletoc}
+%\usepackage{ctexcap}
+
+
 \NeedsTeXFormat{LaTeX2e}
+%\usepackage[utf8]{inputenc}
 
 %----------------------------------------------------------------------------------------
 %	 REQUIRED PACKAGES
 %-----------------------------------------------------------------------	-----------------
 
-\RequirePackage[quiet]{fontspec}
+%\RequirePackage[quiet]{fontspec}
 \RequirePackage[sfdefault]{ClearSans}
 \RequirePackage{tikz}
 \RequirePackage{xcolor}
@@ -253,11 +266,28 @@
 	\tikz[baseline=(char.base)]\node[anchor=north west, draw,rectangle, rounded corners, inner sep=1.6pt, minimum size=5.5mm, text height=3.6mm, fill=#2,#2,text=white](char){#1};%
 }
 
-\def\@sectioncolor#1#2#3{%
+
+
+%\def\zh_CN_CV{1}
+
+\ifx\zh_CN_CV\undefined
+undefined en or zh
+\else
+  \if\zh_CN_CV1
+  \def\@sectioncolor#1#2{%
+	{%
+		\color{pblue} #1#2%
+	}%
+}
+ \else
+ \def\@sectioncolor#1#2#3{%
 	{%
 		\color{pblue} #1#2#3%
 	}%
 }
+  \fi
+\fi
+
 
 
 \renewcommand{\section}[1]{
