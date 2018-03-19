@@ -1,26 +1,22 @@
 \ProvidesClass{twentysecondcv}[2015/02/28 CV class]
-
+%\LoadClass{article}
+%\NeedsTeXFormat{LaTeX2e}
 
 \LoadClass[utf8]{ctexart}
-\renewcommand{\baselinestretch}{0.9}
-
-%\LoadClass{article}
-%\usepackage{xeCJK}% 调用 xeCJK 宏包
-%\setCJKmainfont{SimSun}% 设置 CJK 主字体为 SimSun （宋体）
-
-%\usepackage{titletoc}
-%\usepackage{ctexcap}
-
-
-\NeedsTeXFormat{LaTeX2e}
-%\usepackage[utf8]{inputenc}
+\renewcommand{\baselinestretch}{0.99}
 
 %----------------------------------------------------------------------------------------
-%	 REQUIRED PACKAGES
-%-----------------------------------------------------------------------	-----------------
+%  REQUIRED PACKAGES
+%-----------------------------------------------------------------------  -----------------
 
 %\RequirePackage[quiet]{fontspec}
 \RequirePackage[sfdefault]{ClearSans}
+
+\def\arrow#1{\pspicture[shift=2pt](#1,0)\psline{->}(#1,0)\endpspicture}
+
+\usepackage{pstricks}
+
+\usepackage{fontawesome}
 \RequirePackage{tikz}
 \RequirePackage{xcolor}
 \RequirePackage[absolute,overlay]{textpos}
@@ -63,7 +59,7 @@
 \fi
 
 %----------------------------------------------------------------------------------------
-%	 COLOURS
+%  COLOURS
 %----------------------------------------------------------------------------------------
 
 \definecolor{white}{RGB}{255,255,255}
@@ -94,6 +90,9 @@
 \definecolor{materialbrown}{HTML}{795548}
 \definecolor{materialred}{HTML}{FF4436}
 \definecolor{materialorange}{HTML}{FF5722}
+\definecolor{linkedin}{HTML}{0085AE}
+\definecolor{test}{HTML}{0077be}
+\definecolor{yt}{HTML}{c71610}
 
 \ifdefined\@cv@print
   \colorlet{green}{gray}
@@ -111,7 +110,7 @@
 \colorlet{headercolor}{gray}
 
 %----------------------------------------------------------------------------------------
-%	 MISC CONFIGURATIONS
+%  MISC CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
 % \renewcommand{\bfseries}{\color{black}} % Make \textbf produce coloured text instead
@@ -121,16 +120,16 @@
 \setlength{\parindent}{0pt} % Disable paragraph indentation
 
 % --------------------------------------------------------------------------------------
-% 	FONTS
+%   FONTS
 %-------------------------------------------------------------------------------------
 \newfontfamily\headingfont[Path = fonts/]{segoeuib.ttf}
 
 %----------------------------------------------------------------------------------------
-%	 SIDEBAR DEFINITIONS
+%  SIDEBAR DEFINITIONS
 %----------------------------------------------------------------------------------------
 
 \setlength{\TPHorizModule}{1cm} % Left margin
-\setlength{\TPVertModule}{1cm} % Top margin
+\setlength{\TPVertModule}{0.5cm} % Top margin
 
 \newlength\imagewidth
 \newlength\imagescale
@@ -156,16 +155,28 @@
 \newcommand*\icon[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=1pt, fill=mainblue,mainblue,text=white] (char) {#1};}}
 
 % Command for printing skill progress bars
-\newcommand\interests[1]{ 
-	\renewcommand{\interests}{
-		\begin{tikzpicture}
-			\foreach [count=\i] \x/\y in {#1}{
-				\draw[fill=maingray,maingray] (0,\i) rectangle (6,\i+0.4);
-				\draw[fill=white,mainblue](0,\i) rectangle (\y,\i+0.4);
-				\node [above right] at (0,\i+0.4) {\x};
-			}
-		\end{tikzpicture}
-	}
+\newcommand\programming[1]{ 
+  \renewcommand{\programming}{
+    \begin{tikzpicture}
+          \node [above right] at (0, 4) {$0 \: LOC \: \arrow{3.2} \: 5000 \: LOC$};
+      \foreach [count=\i] \x/\y in {#1}{
+        \draw[fill=maingray,maingray] (0,\i) rectangle (6,\i+0.4);
+        \draw[fill=white,mainblue](0,\i) rectangle (\y,\i+0.4);
+        \node [above right] at (0,\i+0.35) {\x};
+      }
+    \end{tikzpicture}
+  }
+}
+\newcommand\projects[1]{ 
+  \renewcommand{\projects}{
+    {#1}
+  }
+}
+
+\newcommand\experience[1]{ 
+  \renewcommand{\experience}{
+    {#1}
+  }
 }
 
 %----------------------------------------------------------------------------------------
@@ -183,8 +194,10 @@
 
     %------------------------------------------------
     
-        \vspace{4mm}
+    \vspace{2mm}
     {\Huge\color{pblue}\cvname}
+    
+    \vspace{1mm}
 
     %------------------------------------------------
     
@@ -192,80 +205,91 @@
 
     %------------------------------------------------
     
-        \vspace{5mm}
-    \renewcommand{\arraystretch}{1.6}
+    \vspace{2mm}
+    \renewcommand{\arraystretch}{1}
     \begin{tabular}{p{1cm} @{\hskip 0.5cm}p{5cm}}
-        
-    %   \ifthenelse{\equal{\cvlinkedin}{}}{}{
-    %     {$
-    %       \begin{array}{l}
-    %       {\href{\cvlinkedin}{\includegraphics[scale=0.04]{img/LinkedIn_Logo.png}}}
-    %       \end{array}
-    %       $} & \href{\cvlinkedin}{\hspace{16mm}/in/miaodx} \\
-    %     }
-      \ifthenelse{\equal{\cvgithub}{}}{}{
-        {$
-          \begin{array}{l}
-          {\href{\cvgithub}{\includegraphics[scale=0.005]{img/github.jpg}}}
-          \end{array}
-          $} & \href{\cvgithub}{github.com/MiaoDX} \\
-        }
       \ifthenelse{\equal{\cvnumberphone}{}}{}{
-            {$
+          {$
               \begin{array}{l}
-              \includegraphics[scale=0.1]{img/tel.png}
+              \hspace{4mm} \Huge \textnormal{\faMobile} 
               \end{array}
               $} 
             & \cvnumberphone\\}
-      \ifthenelse{\equal{\href{\cvsite}{\cvsite}}{}}{}{
+            
+      \ifthenelse{\equal{\cvsite}{}}{}{
             {$
               \begin{array}{l}
-              {\href{\cvsite}{\includegraphics[scale=0.05]{img/globe-512.png}}}
+              \hspace{2.8mm} \huge \textnormal{\textcolor{test}{\faGlobe}}
               \end{array}
-              $} & \href{\cvsite}{miaodx.github.io} \\
-            %& \cvsite\\
-        }
+              $} 
+            & \href{http://\cvsite}{\cvsite} \\}
       \ifthenelse{\equal{\cvmail}{}}{}{
             {$
               \begin{array}{l}
-              {\href{mailto:\cvmail}{\includegraphics[scale=0.05]{img/email.png}}}
+              \hspace{2.5mm} \huge \textnormal{\textcolor{yt}{\faEnvelopeO}}
               \end{array}
               $} 
-            & \href{mailto:\cvmail}{\cvmail}}
+            & \href{mailto:\cvmail}{\cvmail} \\}
+      
+        \ifthenelse{\equal{\cvgithub}{}}{}{
+            {$
+              \begin{array}{l}
+              \hspace{3mm} \huge \textnormal{\faGithub}
+              \end{array}
+              $} & \href{https://www.github.com/\cvgithub}{\cvgithub} \\
+            }   
+            
     \end{tabular}
 
     %------------------------------------------------
-        \vspace{2mm}
-        \profilesection{Skills}{4cm}
+    \vspace{2mm}
+    \profilesection{Skills}{4cm}
+    
+    {\large \textbf{Overview}}
 
-    	\skills
+  \skills
         
         %------------------------------------------------
-        \vspace{2mm}
-        \profilesection{Interests}{3cm} 
         
-        \interests
-        
+        \vspace{1mm}
+       
+   {\large \textbf{Programming}} 
+
+     \programming
+         
         \vspace{2mm}
-        \profilesection{Languages}{2.4cm} 
-        {$
-              \begin{array}{l}
-              \hspace{-2mm}{\includegraphics[scale=0.12]{img/languages_miao.png}}
-              \end{array}
-        $}   
+
+
+        %\profilesection{Projects}{3cm} 
+        
+        %\projects
+
+        \profilesection{Experience}{2cm} 
+        
+        \experience
+
+
+%        \vspace{2mm}
+%        \profilesection{Languages}{2.4cm} 
+%        {$
+%              \begin{array}{l}
+%              \hspace{-2mm}{\includegraphics[scale=0.12]{img/languages_miao.png}}
+%              \end{array}
+%        $}   
+
+      
   \end{textblock}
 }
 
 
 %----------------------------------------------------------------------------------------
-%	 COLOURED SECTION TITLE BOX
+%  COLOURED SECTION TITLE BOX
 %----------------------------------------------------------------------------------------
 
 % Command to create the rounded boxes around the first three letters of section titles
 \newcommand*\round[2]{%
-	\tikz[baseline=(char.base)]\node[anchor=north west, draw,rectangle, rounded corners, inner sep=1.6pt, minimum size=5.5mm, text height=3.6mm, fill=#2,#2,text=white](char){#1};%
+  \tikz[baseline=(char.base)]\node[anchor=north west, draw,rectangle, rounded corners, inner sep=1.6pt, minimum size=5.5mm, text height=3.6mm, fill=#2,#2,text=white](char){#1};%
 }
-
 
 
 %\def\zh_CN_CV{1}
@@ -288,73 +312,83 @@ undefined en or zh
   \fi
 \fi
 
-
-
 \renewcommand{\section}[1]{
-  \par\vspace{\parskip}
-	{%
-		\LARGE\headingfont\color{headercolor}%
-		\@sectioncolor #1%
-	}
-  \par\vspace{\parskip}
+  %\par\vspace{0.15\parskip}
+  {%
+    \LARGE\headingfont\color{headercolor}%
+    \@sectioncolor #1%
+  }
+  \par\vspace{0.15\parskip}
 }
 
-\renewcommand{\subsection}[1]{
-	\par\vspace{.5\parskip}{%
-		\Large\headingfont\color{headercolor} #1%
-	}
-	\par\vspace{.25\parskip}%
-}
+%\renewcommand{\subsection}[1]{
+%  \par\vspace{\parskip}{%
+%    \Large\headingfont\color{headercolor} #1%
+%  }
+%  \par\vspace{\parskip}%
+%}
 
 \pagestyle{empty}
 
 %----------------------------------------------------------------------------------------
-%	 LONG LIST ENVIRONMENT
+%  LONG LIST ENVIRONMENT
 %----------------------------------------------------------------------------------------
 
 \setlength{\tabcolsep}{0pt}
 
 % New environment for the long list
 \newenvironment{twenty}{%
-	\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll}
 }{%
-	\end{tabular*}
+  \end{tabular*}
 }
 
-\newcommand{\twentyitem}[5]{%
-	#1&\parbox[t]{0.83\textwidth}{%
-		\textbf{#2}% 
-		\hfill%
-		{\footnotesize#3}\\%
-        \ifblank{#4}{}{#4 \\}
-		#5\vspace{\parsep}%
-	}\\
+% \newcommand{\twentyitem}[5]{%
+%   #1&\parbox[t]{0.83\textwidth}{%
+%     \textbf{#2}% 
+%     \hfill%
+%     {\footnotesize#3}\\%
+%         \ifblank{#4}{}{#4 \\}
+%     #5\vspace{\parsep}%
+%   }\\
+% }
+
+\newcommand{\twentyitem}[6]{%
+  #1&\parbox[t]{0.83\textwidth}{%
+    \textbf{#3}% 
+    \hfill%
+    {\footnotesize#4}%
+        }\\%
+    #2&\parbox[t]{0.83\textwidth}{%
+    \ifblank{#5}{}{#5 \\}
+    #6\vspace{0.5\parsep}%
+  }\\
 }
 
 %----------------------------------------------------------------------------------------
-%	 SMALL LIST ENVIRONMENT
+%  SMALL LIST ENVIRONMENT
 %----------------------------------------------------------------------------------------
 
 \setlength{\tabcolsep}{0pt}
 
 % New environment for the small list
 \newenvironment{twentyshort}{%
-	\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll}
 }{%
-	\end{tabular*}
+  \end{tabular*}
 }
 
 \newcommand{\twentyitemshort}[2]{%
-	#1&\parbox[t]{0.83\textwidth}{%
-		#2%
-	}\\
+  #1&\parbox[t]{0.83\textwidth}{%
+    \textbf{#2}%
+  }\\
 }
 
 %----------------------------------------------------------------------------------------
-%	 MARGINS AND LINKS
+%  MARGINS AND LINKS
 %----------------------------------------------------------------------------------------
 
-\RequirePackage[left=7.6cm,top=0.1cm,right=1cm,bottom=0.2cm,nohead,nofoot]{geometry}
+\RequirePackage[left=7.6cm,top=0.1cm,right=1cm,bottom=0.1cm,nohead,nofoot]{geometry}
 
 
 \usepackage{smartdiagram}
@@ -378,4 +412,3 @@ undefined en or zh
     % sets the opacity at which the bubble text is shown
     bubble text opacity = 1,
 }
-
