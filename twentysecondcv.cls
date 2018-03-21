@@ -216,13 +216,7 @@
               $} 
             & \cvnumberphone\\}
             
-      \ifthenelse{\equal{\cvsite}{}}{}{
-            {$
-              \begin{array}{l}
-              \hspace{2.8mm} \huge \textnormal{\textcolor{test}{\faGlobe}}
-              \end{array}
-              $} 
-            & \href{http://\cvsite}{\cvsite} \\}
+
       \ifthenelse{\equal{\cvmail}{}}{}{
             {$
               \begin{array}{l}
@@ -236,8 +230,16 @@
               \begin{array}{l}
               \hspace{3mm} \huge \textnormal{\faGithub}
               \end{array}
-              $} & \href{https://www.github.com/\cvgithub}{\cvgithub} \\
+              $} & \href{\cvgithub}{\cvgithub} \\
             }   
+
+        \ifthenelse{\equal{\cvsite}{}}{}{
+        {$
+          \begin{array}{l}
+          \hspace{2.8mm} \huge \textnormal{\textcolor{test}{\faGlobe}}
+          \end{array}
+          $} 
+        & \href{\cvsite}{\cvsite} \\}
             
     \end{tabular}
 
