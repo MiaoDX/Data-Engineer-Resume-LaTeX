@@ -320,7 +320,7 @@ undefined en or zh
     \LARGE\headingfont\color{headercolor}%
     \@sectioncolor #1%
   }
-  \par\vspace{0.15\parskip}
+  \par\vspace{0.1\parskip}
 }
 
 %\renewcommand{\subsection}[1]{
@@ -363,7 +363,7 @@ undefined en or zh
         }\\%
     #2&\parbox[t]{0.83\textwidth}{%
     \ifblank{#5}{}{#5 \\}
-    #6\vspace{0.5\parsep}%
+    #6\vspace{0.3\parsep}%
   }\\
 }
 
